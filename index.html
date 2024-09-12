@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Image Date and GPS Adder - Add customizable date and location labels to your images" />
+    <meta name="theme-color" content="#007bff" />
+    <title>Image Date and GPS Adder</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Image Date and GPS Adder</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="file" id="imageUpload" class="form-control mb-3" accept="image/*" />
+                <div id="imageContainer" class="mb-3">
+                    <img id="imagePreview" src="images/600x400.png" alt="Preview" aria-label="Image Preview" />
+                    <div id="dateLabel" aria-label="Date Label"></div>
+                    <div id="gpsLabel" aria-label="GPS Label"></div>
+                </div>
+
+                <div class="tooltip-container">
+                    <button id="resetLabels" class="btn btn-danger mt-3">Reset Labels</button>
+                    <span class="tooltip-text">Reset label positions</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="date-tab" data-bs-toggle="tab" data-bs-target="#date"
+                            type="button" role="tab" aria-controls="date" aria-selected="true">Date Label</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="gps-tab" data-bs-toggle="tab" data-bs-target="#gps" type="button"
+                            role="tab" aria-controls="gps" aria-selected="false">GPS Label</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="exif-tab" data-bs-toggle="tab" data-bs-target="#exif" type="button"
+                            role="tab" aria-controls="exif" aria-selected="false">EXIF Data</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <!-- Date Label Tab -->
+                    <div class="tab-pane fade show active" id="date" role="tabpanel" aria-labelledby="date-tab">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="showDateLabel" checked />
+                            <label class="form-check-label" for="showDateLabel">Show Date Label</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateText" class="form-label">Date Text:</label>
+                            <input type="text" id="dateText" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateFontFamily" class="form-label">Font Family:</label>
+                            <select id="dateFontFamily" class="form-select">
+                                <option value="Arial">Arial</option>
+                                <option value="Helvetica">Helvetica</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Courier New">Courier New</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Calibri">Calibri</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateFontSize" class="form-label">Font Size:</label>
+                            <input type="number" id="dateFontSize" class="form-control" value="16" min="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateTextColor" class="form-label">Text Color:</label>
+                            <input type="color" id="dateTextColor" class="form-control form-control-color"
+                                value="#ffffff" />
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dateBackgroundToggle" />
+                                <label class="form-check-label" for="dateBackgroundToggle">Enable Background</label>
+                            </div>
+                            <label for="dateBackgroundColor" class="form-label">Background Color:</label>
+                            <input type="color" id="dateBackgroundColor" class="form-control form-control-color"
+                                value="#000000" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateBackgroundOpacity" class="form-label">Background Opacity: <span
+                                    id="dateBackgroundOpacityValue">1</span></label>
+                            <input type="range" id="dateBackgroundOpacity" class="form-range" min="0" max="1" step="0.1"
+                                value="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateBackgroundRadius" class="form-label">Background Radius: <span
+                                    id="dateBackgroundRadiusValue">0</span>px</label>
+                            <input type="range" id="dateBackgroundRadius" class="form-range" min="0" max="20"
+                                value="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="datePadding" class="form-label">Padding:</label>
+                            <input type="number" id="datePadding" class="form-control" value="2" min="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateHaloEffect" class="form-label">Halo Effect:</label>
+                            <select id="dateHaloEffect" class="form-select">
+                                <option value="none">None</option>
+                                <option value="black">Black</option>
+                                <option value="white">White</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateHaloSize" class="form-label">Halo Size: <span
+                                    id="dateHaloSizeValue">1</span>px</label>
+                            <input type="range" id="dateHaloSize" class="form-range" min="1" max="5" step="0.5"
+                                value="1" />
+                        </div>
+                    </div>
+
+                    <!-- GPS Label Tab -->
+                    <div class="tab-pane fade" id="gps" role="tabpanel" aria-labelledby="gps-tab">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="showGPSLabel" checked />
+                            <label class="form-check-label" for="showGPSLabel">Show GPS Label</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsText" class="form-label">GPS Coordinates:</label>
+                            <input type="text" id="gpsText" class="form-control" readonly />
+                            <button id="reverseGeocode" class="btn btn-secondary mt-2">Reverse Geocode</button>
+                        </div>
+                        <div class="mb-3">
+                            <label for="addressText" class="form-label">Address:</label>
+                            <input type="text" id="addressText" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsFontFamily" class="form-label">Font Family:</label>
+                            <select id="gpsFontFamily" class="form-select">
+                                <option value="Arial">Arial</option>
+                                <option value="Helvetica">Helvetica</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Courier New">Courier New</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Calibri">Calibri</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsFontSize" class="form-label">Font Size:</label>
+                            <input type="number" id="gpsFontSize" class="form-control" value="16" min="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsTextColor" class="form-label">Text Color:</label>
+                            <input type="color" id="gpsTextColor" class="form-control form-control-color"
+                                value="#ffffff" />
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gpsBackgroundToggle" />
+                                <label class="form-check-label" for="gpsBackgroundToggle">Enable Background</label>
+                            </div>
+                            <label for="gpsBackgroundColor" class="form-label">Background Color:</label>
+                            <input type="color" id="gpsBackgroundColor" class="form-control form-control-color"
+                                value="#000000" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsBackgroundOpacity" class="form-label">Background Opacity: <span
+                                    id="gpsBackgroundOpacityValue">1</span></label>
+                            <input type="range" id="gpsBackgroundOpacity" class="form-range" min="0" max="1" step="0.1"
+                                value="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsBackgroundRadius" class="form-label">Background Radius: <span
+                                    id="gpsBackgroundRadiusValue">0</span>px</label>
+                            <input type="range" id="gpsBackgroundRadius" class="form-range" min="0" max="20"
+                                value="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsPadding" class="form-label">Padding:</label>
+                            <input type="number" id="gpsPadding" class="form-control" value="2" min="0" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsHaloEffect" class="form-label">Halo Effect:</label>
+                            <select id="gpsHaloEffect" class="form-select">
+                                <option value="none">None</option>
+                                <option value="black">Black</option>
+                                <option value="white">White</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gpsHaloSize" class="form-label">Halo Size: <span
+                                    id="gpsHaloSizeValue">1</span>px</label>
+                            <input type="range" id="gpsHaloSize" class="form-range" min="1" max="5" step="0.5"
+                                value="1" />
+                        </div>
+                    </div>
+
+                    <!-- EXIF Data Tab -->
+                    <div class="tab-pane fade" id="exif" role="tabpanel" aria-labelledby="exif-tab">
+                        <div id="exifData" class="mt-3">
+                            <p>No image uploaded. EXIF data will appear here when an image is selected.</p>
+                        </div>
+                    </div>
+                </div>
+                <button id="saveButton" class="btn btn-primary mt-3">Save Image</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/exif.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
