@@ -10,7 +10,7 @@ The **Image Date and GPS Adder** is a web-based tool designed to help users add 
 - **Reverse Geocoding**: Convert GPS coordinates to a human-readable address (via OpenStreetMap API).
 - **Save Images**: Download your image with the added labels in JPEG format.
 
-![Projects](https://github.com/abport/Image-Date-GPS-Adder/blob/main/images/screenshot.png) 
+![Projects](https://github.com/abport/Image-Date-GPS-Adder/blob/main/screenshot.png) 
 
 ## How It Works
 1. **Upload an Image**: Select an image file from your local device (supports most common image formats).
