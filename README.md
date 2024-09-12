@@ -29,7 +29,7 @@ A live demo of this project is available <a href="https://abport.github.io/Image
 To run this tool locally:
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/image-date-gps-adder.git
+   git clone https://github.com/abport/image-date-gps-adder.git
    ```
 
 2. **Navigate to the Project Directory**:
