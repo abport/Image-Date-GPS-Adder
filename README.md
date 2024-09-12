@@ -3,6 +3,14 @@
 ## Overview
 The **Image Date and GPS Adder** is a web-based tool designed to help users add customizable date and GPS location labels to their images. The tool allows for easy manipulation of label styles, such as font, color, and background, making it ideal for photographers, content creators, and anyone looking to document image data in a visually appealing way.
 
+## Demo
+A live demo of this project is available <a href="https://abport.github.io/Image-Date-GPS-Adder/"
+    ><img
+      src="https://img.shields.io/static/v1?label=&message=Live%20Demo%20Here&color=orange"
+      height="25"
+  /></a>.
+
+  
 ## Features
 - **Add Date and GPS Labels**: Automatically extracts EXIF data from images and displays customizable labels for date and GPS coordinates.
 - **Customizable Labels**: Choose from a variety of fonts, colors, background styles, and more.
@@ -37,12 +45,6 @@ To run this tool locally:
 - **Date and GPS Labels**: Customize and move labels around on the image.
 - **Save Image**: Once labels are placed, save the updated image.
 
-## Demo
-A live demo of this project is available <a href="https://abport.github.io/Image-Date-GPS-Adder/"
-    ><img
-      src="https://img.shields.io/static/v1?label=&message=Live%20Demo%20Here&color=orange"
-      height="25"
-  /></a>.
 
 ## Technologies Used
 - HTML5
