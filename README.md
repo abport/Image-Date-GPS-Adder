@@ -36,7 +36,7 @@ To run this tool locally:
 - **Save Image**: Once labels are placed, save the updated image.
 
 ## Demo
-A live demo of this project is available <a href="https://abport.github.io/Academic-Word-Guessing-Game/"
+A live demo of this project is available <a href="https://abport.github.io/Image-Date-GPS-Adder/"
     ><img
       src="https://img.shields.io/static/v1?label=&message=Live%20Demo%20Here&color=orange"
       height="25"
